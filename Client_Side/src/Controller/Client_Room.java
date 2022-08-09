@@ -9,6 +9,7 @@
 package Controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -19,8 +20,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 
-public class Client_Room {
+import java.io.*;
+import java.net.Socket;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Client_Room extends Thread implements Initializable {
     public Label clientName;
     public Button profileBtn;
     public Circle showProPic;
@@ -48,7 +55,29 @@ public class Client_Room {
     public Button l;
     public Rectangle emojiBox;
 
+    public boolean toggleChat = false, toggleProfile = false;
+    BufferedReader reader;
+    PrintWriter writer;
+    Socket socket;
+
+    private FileChooser fileChooser;
+    private File filePath;
+
+    public void connectSocket(){
+        try {
+            socket = new Socket("localhost", 5005);
+            System.out.println("Socket is connected with server!");
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            writer = new PrintWriter(socket.getOutputStream(), true);
+            this.start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void handleProfileBtn(ActionEvent event) {
+
     }
 
     public void chooseImageButton(ActionEvent event) {
@@ -103,6 +132,11 @@ public class Client_Room {
     }
 
     public void clickEmoji12(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
     }
 }
