@@ -207,7 +207,9 @@ public class Client_Room extends Thread implements Initializable {
         }
     }
     public void sendMessageByKey(KeyEvent event) {
-
+        if (event.getCode().toString().equals("ENTER")) {
+            send();
+        }
     }
 
     public void mouseClickedAnotherArea(MouseEvent mouseEvent) {
