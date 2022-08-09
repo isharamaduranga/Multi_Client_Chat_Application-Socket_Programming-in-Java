@@ -13,6 +13,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -27,6 +28,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -182,6 +184,12 @@ public class Client_Room extends Thread implements Initializable {
     }
 
     public void chooseImageButton(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image");
+        this.filePath = fileChooser.showOpenDialog(stage);
+        fileChoosePath.setText(filePath.getPath());
+        saveControl = true;
     }
 
     public void saveImage(ActionEvent event) {
@@ -198,12 +206,14 @@ public class Client_Room extends Thread implements Initializable {
             }
         }
     }
+    public void sendMessageByKey(KeyEvent event) {
+
+    }
 
     public void mouseClickedAnotherArea(MouseEvent mouseEvent) {
     }
 
-    public void sendMessageByKey(KeyEvent event) {
-    }
+
 
     public void cameraIconMouseClicked(MouseEvent mouseEvent) {
     }
