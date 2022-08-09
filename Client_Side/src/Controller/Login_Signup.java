@@ -10,6 +10,7 @@ package Controller;
 
 import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -192,9 +193,15 @@ public class Login_Signup {
         passWord.setText("");
     }
 
-    public void handleMouseEvent(MouseEvent mouseEvent) {
+    @FXML
+    private void handleMouseEvent(MouseEvent event) {
+        if (event.getSource() == btnBack) {
+            new FadeIn(pnSignIn).play();
+            pnSignIn.toFront();
+        }
+        regName.setText("");
+        regPass.setText("");
+        regEmail.setText("");
 
     }
-
-
 }
