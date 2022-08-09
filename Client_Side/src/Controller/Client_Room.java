@@ -8,6 +8,7 @@
 
 package Controller;
 
+import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -105,7 +106,21 @@ public class Client_Room extends Thread implements Initializable {
     }
 
     public void handleProfileBtn(ActionEvent event) {
-
+        if (event.getSource().equals(profileBtn) && !toggleProfile) {
+            new FadeIn(profile).play();
+            profile.toFront();
+            chat.toBack();
+            toggleProfile = true;
+            toggleChat = false;
+            profileBtn.setText("Back");
+            setProfile();
+        } else if (event.getSource().equals(profileBtn) && toggleProfile) {
+            new FadeIn(chat).play();
+            chat.toFront();
+            toggleProfile = false;
+            toggleChat = false;
+            profileBtn.setText("Profile");
+        }
     }
 
     public void chooseImageButton(ActionEvent event) {
