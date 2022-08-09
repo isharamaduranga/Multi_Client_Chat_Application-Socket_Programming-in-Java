@@ -16,10 +16,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
@@ -65,6 +68,21 @@ public class Client_Room extends Thread implements Initializable {
 
     private FileChooser fileChooser;
     private File filePath;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        showProPic.setStroke(Color.valueOf("#90a4ae"));
+        Image image;
+        if (Login_Signup.gender.equalsIgnoreCase("Male")) {
+            image = new Image("View/icons/user.png", false);
+        } else {
+            image = new Image("View/icons/female.png", false);
+            proImage.setImage(image);
+        }
+        showProPic.setFill(new ImagePattern(image));
+        clientName.setText(Login_Signup.username);
+        connectSocket();
+    }
 
     public void connectSocket(){
         try {
@@ -207,8 +225,5 @@ public class Client_Room extends Thread implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
 
-    }
 }
