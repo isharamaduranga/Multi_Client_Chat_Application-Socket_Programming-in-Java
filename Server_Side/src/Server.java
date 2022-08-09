@@ -12,15 +12,17 @@ import java.util.ArrayList;
  */
 
 public class Server {
-    /** Create static ArrayList with handle for clients*/
-    private static ArrayList<ClientHandler> clients = new ArrayList<ClientHandler>();
+    /**
+     * Create static ArrayList with handle for clients
+     */
+    private static final ArrayList<ClientHandler> clients = new ArrayList<ClientHandler>();
 
     public static void main(String[] args) {
         ServerSocket serverSocket;
         Socket socket;
         try {
             serverSocket = new ServerSocket(5006);
-            while(true) {
+            while (true) {
                 System.out.println("Waiting for clients...");
                 socket = serverSocket.accept();
                 System.out.println("Connected Successfully...");

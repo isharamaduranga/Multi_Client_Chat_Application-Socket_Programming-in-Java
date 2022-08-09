@@ -38,6 +38,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static Controller.Login_Signup.users;
+
 public class Client_Room extends Thread implements Initializable {
     public Label clientName;
     public Button profileBtn;
@@ -68,14 +69,16 @@ public class Client_Room extends Thread implements Initializable {
 
     public boolean toggleChat = false, toggleProfile = false;
 
-    /** Changing profile pic */
+    /**
+     * Changing profile pic
+     */
 
     public boolean saveControl = false;
 
     BufferedReader reader;
     PrintWriter writer;
     Socket socket;
-
+    String msg = "";
     private FileChooser fileChooser;
     private File filePath;
 
@@ -108,7 +111,7 @@ public class Client_Room extends Thread implements Initializable {
         l.setVisible(false);
     }
 
-    public void connectSocket(){
+    public void connectSocket() {
         try {
             socket = new Socket("localhost", 5006);
             System.out.println("Socket is connected with server!");
@@ -120,6 +123,7 @@ public class Client_Room extends Thread implements Initializable {
             e.printStackTrace();
         }
     }
+
     @Override
     public void run() {
         try {
@@ -181,19 +185,18 @@ public class Client_Room extends Thread implements Initializable {
 
     public void handleSendEvent(MouseEvent mouseEvent) {
         send();
-        for(User user : users) {
+        for (User user : users) {
             System.out.println(user.name);
         }
     }
 
-    String msg="";
     public void send() {
         msg = msgField.getText();
         writer.println(Login_Signup.username + ": " + msg);
         msgRoom.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         msgRoom.appendText("Me: " + msg + "\n");
         msgField.setText("");
-        if(msg.equalsIgnoreCase("BYE") || (msg.equalsIgnoreCase("logout"))) {
+        if (msg.equalsIgnoreCase("BYE") || (msg.equalsIgnoreCase("logout"))) {
             System.exit(0);
         }
     }
@@ -262,40 +265,51 @@ public class Client_Room extends Thread implements Initializable {
     }
 
     public void clickEmoji1(MouseEvent mouseEvent) {
-        msgField.setText(msg+a.getText());
+        msgField.setText(msg + a.getText());
     }
+
     public void clickEmoji2(MouseEvent mouseEvent) {
-        msgField.setText(msg+b.getText());
+        msgField.setText(msg + b.getText());
     }
+
     public void clickEmoji3(MouseEvent mouseEvent) {
-        msgField.setText(msg+c.getText());
+        msgField.setText(msg + c.getText());
     }
+
     public void clickEmoji4(MouseEvent mouseEvent) {
-        msgField.setText(msg+d.getText());
+        msgField.setText(msg + d.getText());
     }
+
     public void clickEmoji5(MouseEvent mouseEvent) {
-        msgField.setText(msg+e.getText());
+        msgField.setText(msg + e.getText());
     }
+
     public void clickEmoji6(MouseEvent mouseEvent) {
-        msgField.setText(msg+f.getText());
+        msgField.setText(msg + f.getText());
     }
+
     public void clickEmoji7(MouseEvent mouseEvent) {
-        msgField.setText(msg+g.getText());
+        msgField.setText(msg + g.getText());
     }
+
     public void clickEmoji8(MouseEvent mouseEvent) {
-        msgField.setText(msg+h.getText());
+        msgField.setText(msg + h.getText());
     }
+
     public void clickEmoji9(MouseEvent mouseEvent) {
-        msgField.setText(msg+i.getText());
+        msgField.setText(msg + i.getText());
     }
+
     public void clickEmoji10(MouseEvent mouseEvent) {
-        msgField.setText(msg+j.getText());
+        msgField.setText(msg + j.getText());
     }
+
     public void clickEmoji11(MouseEvent mouseEvent) {
-        msgField.setText(msg+k.getText());
+        msgField.setText(msg + k.getText());
     }
+
     public void clickEmoji12(MouseEvent mouseEvent) {
-        msgField.setText(msg+l.getText());
+        msgField.setText(msg + l.getText());
     }
 
 }

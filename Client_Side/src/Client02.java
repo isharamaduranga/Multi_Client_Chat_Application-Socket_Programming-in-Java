@@ -13,16 +13,16 @@ import javafx.stage.Stage;
  */
 
 public class Client02 extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("View/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("View/Login_Signup.fxml"));
         primaryStage.setTitle("Messenger!");
         primaryStage.setScene(new Scene(root, 330, 560));
         primaryStage.setResizable(false);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

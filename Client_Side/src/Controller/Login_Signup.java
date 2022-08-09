@@ -96,7 +96,7 @@ public class Login_Signup {
     }
 
     private void setOpacity(Label a, Label b, Label c, Label d) {
-        if(a.getOpacity() == 1 || b.getOpacity() == 1 || c.getOpacity() == 1 || d.getOpacity() == 1) {
+        if (a.getOpacity() == 1 || b.getOpacity() == 1 || c.getOpacity() == 1 || d.getOpacity() == 1) {
             a.setOpacity(0);
             b.setOpacity(0);
             c.setOpacity(0);
