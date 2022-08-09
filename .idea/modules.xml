@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Client_Side/Client_Side.iml" filepath="$PROJECT_DIR$/Client_Side/Client_Side.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Multi_Client_Chat_Application.iml" filepath="$PROJECT_DIR$/Multi_Client_Chat_Application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Server_Side/Server_Side.iml" filepath="$PROJECT_DIR$/Server_Side/Server_Side.iml" />
+    </modules>
+  </component>
+</project>
