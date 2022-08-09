@@ -11,6 +11,7 @@ package Controller;
 import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -137,7 +138,21 @@ public class Client_Room extends Thread implements Initializable {
 
 
     public void handleSendEvent(MouseEvent mouseEvent) {
-
+        send();
+        for(User user : users) {
+            System.out.println(user.name);
+        }
+    }
+    String msg="";
+    public void send() {
+        msg = msgField.getText();
+        writer.println(Login_Signup.username + ": " + msg);
+        msgRoom.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+        msgRoom.appendText("Me: " + msg + "\n");
+        msgField.setText("");
+        if(msg.equalsIgnoreCase("BYE") || (msg.equalsIgnoreCase("logout"))) {
+            System.exit(0);
+        }
     }
 
     public void chooseImageButton(ActionEvent event) {
