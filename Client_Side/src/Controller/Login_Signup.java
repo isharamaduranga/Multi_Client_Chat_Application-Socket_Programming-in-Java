@@ -8,6 +8,7 @@
 
 package Controller;
 
+import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -178,7 +179,17 @@ public class Login_Signup {
 
 
     public void handleButtonAction(ActionEvent event) {
-
+        if (event.getSource().equals(btnSignUp)) {
+            new FadeIn(pnSignUp).play();
+            pnSignUp.toFront();
+        }
+        if (event.getSource().equals(getStarted)) {
+            new FadeIn(pnSignIn).play();
+            pnSignIn.toFront();
+        }
+        loginNotifier.setOpacity(0);
+        userName.setText("");
+        passWord.setText("");
     }
 
     public void handleMouseEvent(MouseEvent mouseEvent) {
