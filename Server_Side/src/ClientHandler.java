@@ -21,7 +21,7 @@ public class ClientHandler extends Thread {
     private PrintWriter writer;
 
 
-    public ClientHandler(Socket socket, ArrayList<ClientHandler> clients){
+    public ClientHandler (Socket socket, ArrayList<ClientHandler> clients){
         try {
             this.socket = socket;
             this.clients = clients;
@@ -30,9 +30,30 @@ public class ClientHandler extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
+    public void run(){
 
-
+        try {
+            String massage;
+            while ((massage = reader.readLine()) != null) {
+                if(massage.equalsIgnoreCase("exit")){
+                    break;
+                }
+                for (ClientHandler client : clients) {
+                    client.writer.println(massage);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                reader.close();
+                writer.close();
+                socket.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
 }
