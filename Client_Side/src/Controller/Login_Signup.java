@@ -17,6 +17,9 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 
 public class Login_Signup {
+    public static String username, password, gender;
+    public static ArrayList<User> loggedInUser = new ArrayList<>();
+    public static ArrayList<User> users = new ArrayList<User>();
     public Pane pnSignUp;
     public ImageView btnBack;
     public PasswordField regPass;
@@ -39,12 +42,44 @@ public class Login_Signup {
     public Button btnSignUp;
     public Label loginNotifier;
 
-    public static String username, password, gender;
-    public static ArrayList<User> loggedInUser = new ArrayList<>();
-    public static ArrayList<User> users = new ArrayList<User>();
-
     public void registration(ActionEvent event) {
+        if (!regName.getText().equalsIgnoreCase("")
+                && !regPass.getText().equalsIgnoreCase("")
+                && !regEmail.getText().equalsIgnoreCase("")
+                && !regFirstName.getText().equalsIgnoreCase("")
+                && !regPhoneNo.getText().equalsIgnoreCase("")
+                && (male.isSelected() || female.isSelected())) {
 
+            if (checkUser(regName.getText())) {
+                if (checkEmail(regEmail.getText())) {
+                    User newUser = new User();
+                    newUser.name = regName.getText();
+                    newUser.password = regPass.getText();
+                    newUser.email = regEmail.getText();
+                    newUser.fullName = regFirstName.getText();
+                    newUser.phoneNo = regPhoneNo.getText();
+
+                }
+            }
+        }
+    }
+
+    private boolean checkUser(String username) {
+        for (User user : users) {
+            if (user.name.equalsIgnoreCase(username)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkEmail(String email) {
+        for (User user : users) {
+            if (user.email.equalsIgnoreCase(email)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -58,8 +93,6 @@ public class Login_Signup {
 
     public void handleMouseEvent(MouseEvent mouseEvent) {
     }
-
-
 
 
 }
