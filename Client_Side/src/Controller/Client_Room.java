@@ -9,6 +9,7 @@
 package Controller;
 
 import animatefx.animation.FadeIn;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
@@ -27,6 +28,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
@@ -62,6 +65,11 @@ public class Client_Room extends Thread implements Initializable {
     public Rectangle emojiBox;
 
     public boolean toggleChat = false, toggleProfile = false;
+
+    /** Changing profile pic */
+
+    public boolean saveControl = false;
+
     BufferedReader reader;
     PrintWriter writer;
     Socket socket;
@@ -177,6 +185,18 @@ public class Client_Room extends Thread implements Initializable {
     }
 
     public void saveImage(ActionEvent event) {
+        if (saveControl) {
+            try {
+                BufferedImage bufferedImage = ImageIO.read(filePath);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                proImage.setImage(image);
+                showProPic.setFill(new ImagePattern(image));
+                saveControl = false;
+                fileChoosePath.setText("");
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+        }
     }
 
     public void mouseClickedAnotherArea(MouseEvent mouseEvent) {
