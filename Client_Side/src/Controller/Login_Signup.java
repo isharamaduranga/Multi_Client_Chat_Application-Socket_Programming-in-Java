@@ -14,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+
 public class Login_Signup {
     public Pane pnSignUp;
     public ImageView btnBack;
@@ -37,12 +39,17 @@ public class Login_Signup {
     public Button btnSignUp;
     public Label loginNotifier;
 
+    public static String username, password, gender;
+    public static ArrayList<User> loggedInUser = new ArrayList<>();
+    public static ArrayList<User> users = new ArrayList<User>();
 
     public void registration(ActionEvent event) {
+
     }
 
 
     public void login(ActionEvent event) {
+
     }
 
 
