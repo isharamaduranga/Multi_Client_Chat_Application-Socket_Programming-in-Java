@@ -92,11 +92,25 @@ public class Client_Room extends Thread implements Initializable {
         showProPic.setFill(new ImagePattern(image));
         clientName.setText(Login_Signup.username);
         connectSocket();
+
+        emojiBox.setVisible(false);
+        a.setVisible(false);
+        b.setVisible(false);
+        c.setVisible(false);
+        d.setVisible(false);
+        e.setVisible(false);
+        f.setVisible(false);
+        g.setVisible(false);
+        h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
     }
 
     public void connectSocket(){
         try {
-            socket = new Socket("localhost", 5005);
+            socket = new Socket("localhost", 5006);
             System.out.println("Socket is connected with server!");
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
@@ -151,6 +165,7 @@ public class Client_Room extends Thread implements Initializable {
             profileBtn.setText("Profile");
         }
     }
+
     public void setProfile() {
         for (User user : users) {
             if (Login_Signup.username.equalsIgnoreCase(user.name)) {
@@ -164,13 +179,13 @@ public class Client_Room extends Thread implements Initializable {
         }
     }
 
-
     public void handleSendEvent(MouseEvent mouseEvent) {
         send();
         for(User user : users) {
             System.out.println(user.name);
         }
     }
+
     String msg="";
     public void send() {
         msg = msgField.getText();
@@ -206,56 +221,81 @@ public class Client_Room extends Thread implements Initializable {
             }
         }
     }
+
     public void sendMessageByKey(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             send();
         }
     }
 
+
     public void mouseClickedAnotherArea(MouseEvent mouseEvent) {
+        emojiBox.setVisible(false);
+        a.setVisible(false);
+        b.setVisible(false);
+        c.setVisible(false);
+        d.setVisible(false);
+        e.setVisible(false);
+        f.setVisible(false);
+        g.setVisible(false);
+        h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
     }
 
-
-
     public void cameraIconMouseClicked(MouseEvent mouseEvent) {
+        emojiBox.setVisible(true);
+        a.setVisible(true);
+        b.setVisible(true);
+        c.setVisible(true);
+        d.setVisible(true);
+        e.setVisible(true);
+        f.setVisible(true);
+        g.setVisible(true);
+        h.setVisible(true);
+        i.setVisible(true);
+        j.setVisible(true);
+        k.setVisible(true);
+        l.setVisible(true);
     }
 
     public void clickEmoji1(MouseEvent mouseEvent) {
+        msgField.setText(msg+a.getText());
     }
-
     public void clickEmoji2(MouseEvent mouseEvent) {
+        msgField.setText(msg+b.getText());
     }
-
     public void clickEmoji3(MouseEvent mouseEvent) {
+        msgField.setText(msg+c.getText());
     }
-
     public void clickEmoji4(MouseEvent mouseEvent) {
+        msgField.setText(msg+d.getText());
     }
-
     public void clickEmoji5(MouseEvent mouseEvent) {
+        msgField.setText(msg+e.getText());
     }
-
     public void clickEmoji6(MouseEvent mouseEvent) {
+        msgField.setText(msg+f.getText());
     }
-
     public void clickEmoji7(MouseEvent mouseEvent) {
+        msgField.setText(msg+g.getText());
     }
-
     public void clickEmoji8(MouseEvent mouseEvent) {
+        msgField.setText(msg+h.getText());
     }
-
     public void clickEmoji9(MouseEvent mouseEvent) {
+        msgField.setText(msg+i.getText());
     }
-
     public void clickEmoji10(MouseEvent mouseEvent) {
+        msgField.setText(msg+j.getText());
     }
-
     public void clickEmoji11(MouseEvent mouseEvent) {
+        msgField.setText(msg+k.getText());
     }
-
     public void clickEmoji12(MouseEvent mouseEvent) {
-
+        msgField.setText(msg+l.getText());
     }
-
 
 }
