@@ -122,6 +122,23 @@ public class Client_Room extends Thread implements Initializable {
             profileBtn.setText("Profile");
         }
     }
+    public void setProfile() {
+        for (User user : users) {
+            if (Login_Signup.username.equalsIgnoreCase(user.name)) {
+                fullName.setText(user.fullName);
+                fullName.setOpacity(1);
+                email.setText(user.email);
+                email.setOpacity(1);
+                phoneNo.setText(user.phoneNo);
+                gender.setText(user.gender);
+            }
+        }
+    }
+
+
+    public void handleSendEvent(MouseEvent mouseEvent) {
+
+    }
 
     public void chooseImageButton(ActionEvent event) {
     }
@@ -130,9 +147,6 @@ public class Client_Room extends Thread implements Initializable {
     }
 
     public void mouseClickedAnotherArea(MouseEvent mouseEvent) {
-    }
-
-    public void handleSendEvent(MouseEvent mouseEvent) {
     }
 
     public void sendMessageByKey(KeyEvent event) {
