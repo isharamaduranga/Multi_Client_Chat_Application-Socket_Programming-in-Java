@@ -9,24 +9,27 @@
 package Controller;
 
 import animatefx.animation.FadeIn;
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.geometry.NodeOrientation;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -50,22 +53,9 @@ public class Client_Room extends Thread implements Initializable {
     public Label gender;
     public ImageView proImage;
     public TextField fileChoosePath;
-    public TextArea msgRoom;
     public TextField msgField;
     public Pane chat;
-    public Button a;
-    public Button b;
-    public Button c;
-    public Button d;
-    public Button e;
-    public Button f;
-    public Button g;
-    public Button h;
-    public Button i;
-    public Button j;
-    public Button k;
-    public Button l;
-    public Rectangle emojiBox;
+
 
     public boolean toggleChat = false, toggleProfile = false;
 
@@ -74,6 +64,8 @@ public class Client_Room extends Thread implements Initializable {
      */
 
     public boolean saveControl = false;
+    public VBox vbox;
+
 
     BufferedReader reader;
     PrintWriter writer;
@@ -96,24 +88,11 @@ public class Client_Room extends Thread implements Initializable {
         clientName.setText(Login_Signup.username);
         connectSocket();
 
-        emojiBox.setVisible(false);
-        a.setVisible(false);
-        b.setVisible(false);
-        c.setVisible(false);
-        d.setVisible(false);
-        e.setVisible(false);
-        f.setVisible(false);
-        g.setVisible(false);
-        h.setVisible(false);
-        i.setVisible(false);
-        j.setVisible(false);
-        k.setVisible(false);
-        l.setVisible(false);
     }
 
     public void connectSocket() {
         try {
-            socket = new Socket("localhost", 5006);
+            socket = new Socket("localhost", 5007);
             System.out.println("Socket is connected with server!");
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
@@ -126,6 +105,121 @@ public class Client_Room extends Thread implements Initializable {
 
     @Override
     public void run() {
+        try {
+            while (true) {
+
+
+                String msg = reader.readLine();
+                String[] tokens = msg.split(" ");
+                String cmd = tokens[0];
+
+//                txtTextArea.appendText(cmd+"\n");
+                StringBuilder fullMsg = new StringBuilder();
+                for (int i = 1; i < tokens.length; i++) {
+                    fullMsg.append(tokens[i]);
+                }
+
+
+                String[] msgToAr = msg.split(" ");
+                String st = "";
+                for (int i = 0; i < msgToAr.length - 1; i++) {
+                    st += msgToAr[i + 1] + " ";
+                }
+//======================================================================
+
+
+                Text text = new Text(st);
+                String firstChars = "";
+                if (st.length() > 3) {
+                    firstChars = st.substring(0, 3);
+
+                }
+
+
+                if (firstChars.equalsIgnoreCase("img")) {
+                    //for the Images
+
+                    st = st.substring(3, st.length() - 1);
+
+
+                    File file = new File(st);
+                    Image image = new Image(file.toURI().toString());
+
+                    ImageView imageView = new ImageView(image);
+
+                    imageView.setFitHeight(75);
+                    imageView.setFitWidth(150);
+
+
+                    HBox hBox = new HBox(10);
+                    hBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+
+                    if (!cmd.equalsIgnoreCase(Login_Signup.username)) {
+
+                        vbox.setAlignment(Pos.TOP_LEFT);
+                        hBox.setAlignment(Pos.CENTER_LEFT);
+
+
+                        Text text1 = new Text("  " + cmd + " :");
+                        hBox.getChildren().add(text1);
+                        hBox.getChildren().add(imageView);
+
+                    } else {
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.getChildren().add(imageView);
+                        Text text1 = new Text(": Me ");
+                        hBox.getChildren().add(text1);
+
+                    }
+
+                    Platform.runLater(() -> vbox.getChildren().addAll(hBox));
+
+
+                } else {
+                    //For the Text
+                    /*text.setFill(Color.WHITE);*/
+                    text.getStyleClass().add("message");
+                    TextFlow tempFlow = new TextFlow();
+
+                    if (!cmd.equalsIgnoreCase(Login_Signup.username + ":")) {
+                        Text txtName = new Text(cmd + " ");
+                        txtName.getStyleClass().add("txtName");
+                        tempFlow.getChildren().add(txtName);
+                    }
+
+                    tempFlow.getChildren().add(text);
+                    tempFlow.setMaxWidth(200); //200
+
+                    TextFlow flow = new TextFlow(tempFlow);
+
+                    HBox hBox = new HBox(12); //12
+
+                    //=================================================
+
+
+                    if (!cmd.equalsIgnoreCase(Login_Signup.username + ":")) {
+
+                        vbox.setAlignment(Pos.TOP_LEFT);
+                        hBox.setAlignment(Pos.CENTER_LEFT);
+                        hBox.getChildren().add(flow);
+
+                    } else {
+//                        text.setFill(Color.WHITE);
+
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.getChildren().add(flow);
+                    }
+                    hBox.getStyleClass().add("hbox");
+                    Platform.runLater(() -> vbox.getChildren().addAll(hBox));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ /*   public void run() {
         try {
             while (true) {
                 String msg = reader.readLine();
@@ -150,7 +244,7 @@ public class Client_Room extends Thread implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public void handleProfileBtn(ActionEvent event) {
         if (event.getSource().equals(profileBtn) && !toggleProfile) {
@@ -193,8 +287,11 @@ public class Client_Room extends Thread implements Initializable {
     public void send() {
         msg = msgField.getText();
         writer.println(Login_Signup.username + ": " + msg);
-        msgRoom.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-        msgRoom.appendText("Me: " + msg + "\n");
+
+       /* msgRoom.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+        msgRoom.appendText("Me: " + msg + "\n");*/
+
+
         msgField.setText("");
         if (msg.equalsIgnoreCase("BYE") || (msg.equalsIgnoreCase("logout"))) {
             System.exit(0);
@@ -232,84 +329,12 @@ public class Client_Room extends Thread implements Initializable {
     }
 
 
-    public void mouseClickedAnotherArea(MouseEvent mouseEvent) {
-        emojiBox.setVisible(false);
-        a.setVisible(false);
-        b.setVisible(false);
-        c.setVisible(false);
-        d.setVisible(false);
-        e.setVisible(false);
-        f.setVisible(false);
-        g.setVisible(false);
-        h.setVisible(false);
-        i.setVisible(false);
-        j.setVisible(false);
-        k.setVisible(false);
-        l.setVisible(false);
-    }
-
     public void cameraIconMouseClicked(MouseEvent mouseEvent) {
-        emojiBox.setVisible(true);
-        a.setVisible(true);
-        b.setVisible(true);
-        c.setVisible(true);
-        d.setVisible(true);
-        e.setVisible(true);
-        f.setVisible(true);
-        g.setVisible(true);
-        h.setVisible(true);
-        i.setVisible(true);
-        j.setVisible(true);
-        k.setVisible(true);
-        l.setVisible(true);
-    }
 
-    public void clickEmoji1(MouseEvent mouseEvent) {
-        msgField.setText(msg + a.getText());
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image");
+        this.filePath = fileChooser.showOpenDialog(stage);
+        writer.println(Login_Signup.username + " " + "img" + filePath.getPath());
     }
-
-    public void clickEmoji2(MouseEvent mouseEvent) {
-        msgField.setText(msg + b.getText());
-    }
-
-    public void clickEmoji3(MouseEvent mouseEvent) {
-        msgField.setText(msg + c.getText());
-    }
-
-    public void clickEmoji4(MouseEvent mouseEvent) {
-        msgField.setText(msg + d.getText());
-    }
-
-    public void clickEmoji5(MouseEvent mouseEvent) {
-        msgField.setText(msg + e.getText());
-    }
-
-    public void clickEmoji6(MouseEvent mouseEvent) {
-        msgField.setText(msg + f.getText());
-    }
-
-    public void clickEmoji7(MouseEvent mouseEvent) {
-        msgField.setText(msg + g.getText());
-    }
-
-    public void clickEmoji8(MouseEvent mouseEvent) {
-        msgField.setText(msg + h.getText());
-    }
-
-    public void clickEmoji9(MouseEvent mouseEvent) {
-        msgField.setText(msg + i.getText());
-    }
-
-    public void clickEmoji10(MouseEvent mouseEvent) {
-        msgField.setText(msg + j.getText());
-    }
-
-    public void clickEmoji11(MouseEvent mouseEvent) {
-        msgField.setText(msg + k.getText());
-    }
-
-    public void clickEmoji12(MouseEvent mouseEvent) {
-        msgField.setText(msg + l.getText());
-    }
-
 }

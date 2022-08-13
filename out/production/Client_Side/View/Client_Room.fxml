@@ -2,15 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="560.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Client_Room">
@@ -103,11 +103,6 @@
             </Pane>
             <Pane fx:id="chat" prefHeight="200.0" prefWidth="330.0" style="-fx-background-color: #263238;">
                <children>
-                  <TextArea fx:id="msgRoom" editable="false" layoutX="-12.0" layoutY="-4.0" onMouseClicked="#mouseClickedAnotherArea" prefHeight="461.0" prefWidth="344.0" style="-fx-background-color: #263238;" styleClass="text-area" stylesheets="@Css/style.css" wrapText="true">
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </TextArea>
                   <AnchorPane layoutX="-11.0" layoutY="434.0" prefHeight="60.0" prefWidth="340.0" style="-fx-background-color: #263238;">
                      <children>
                         <ImageView fitHeight="42.0" fitWidth="73.0" layoutX="280.0" layoutY="-5.0" onMouseClicked="#handleSendEvent" pickOnBounds="true" preserveRatio="true">
@@ -127,67 +122,11 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <Rectangle id="Css\style.css" fx:id="emojiBox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="143.0" layoutX="50.0" layoutY="287.0" stroke="BLACK" strokeType="INSIDE" styleClass="Css\style.css" visible="false" width="210.0" />
-                  <Button fx:id="a" layoutX="58.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#clickEmoji1" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="👋" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="b" layoutX="109.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#clickEmoji2" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="👊" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="c" layoutX="162.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#clickEmoji3" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="🙏" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="d" layoutX="211.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#clickEmoji4" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="😁" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="e" layoutX="57.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#clickEmoji5" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="😍" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="f" layoutX="108.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#clickEmoji6" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="😎" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="g" layoutX="161.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#clickEmoji7" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="😝" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="h" layoutX="210.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#clickEmoji8" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="👌" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="i" layoutX="57.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#clickEmoji9" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="👀" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="j" layoutX="108.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#clickEmoji10" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="👹" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="k" layoutX="161.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#clickEmoji11" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="👍" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="l" layoutX="210.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#clickEmoji12" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fdcb6e;" text="🤝" visible="false">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
+                  <ScrollPane layoutX="-1.0" prefHeight="429.0" prefWidth="330.0">
+                     <content>
+                        <VBox fx:id="vbox" prefHeight="411.0" prefWidth="286.0" />
+                     </content>
+                  </ScrollPane>
                </children>
             </Pane>
          </children>
