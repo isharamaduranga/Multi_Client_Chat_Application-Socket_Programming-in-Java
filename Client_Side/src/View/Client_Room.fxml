@@ -13,11 +13,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="560.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Client_Room">
+<AnchorPane prefHeight="560.0" prefWidth="330.0" style="-fx-background-color: #263238;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Client_Room">
    <children>
-      <AnchorPane prefHeight="74.0" prefWidth="340.0" style="-fx-background-color: #102027;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="74.0" prefWidth="340.0" style="-fx-background-color: #263238;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="clientName" layoutX="80.0" layoutY="13.0" prefHeight="24.0" prefWidth="93.0" text="Username" textFill="#c1ffbf" wrapText="true">
+            <Label fx:id="clientName" layoutX="80.0" layoutY="17.0" prefHeight="24.0" prefWidth="93.0" text="Username" textFill="#c1ffbf" wrapText="true">
                <font>
                   <Font name="Arial" size="19.0" />
                </font>
@@ -28,9 +28,14 @@
                </font>
             </Button>
             <Circle fx:id="showProPic" fill="DODGERBLUE" layoutX="35.0" layoutY="34.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fitHeight="42.0" fitWidth="50.0" layoutX="193.0" layoutY="13.0" onMouseClicked="#addNewStage" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/add.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <StackPane layoutX="10.0" layoutY="77.0" prefHeight="494.0" prefWidth="330.0">
+      <StackPane layoutY="77.0" prefHeight="494.0" prefWidth="340.0" style="-fx-background-color: #263238;">
          <children>
             <Pane fx:id="profile" prefHeight="448.0" prefWidth="335.0" style="-fx-background-color: #263238;">
                <children>
@@ -122,9 +127,9 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <ScrollPane layoutX="-1.0" prefHeight="429.0" prefWidth="330.0">
+                  <ScrollPane layoutX="-1.0" prefHeight="429.0" prefWidth="340.0">
                      <content>
-                        <VBox fx:id="vbox" prefHeight="411.0" prefWidth="286.0" />
+                        <VBox fx:id="vbox" prefHeight="402.0" prefWidth="294.0" styleClass="txtFont" stylesheets="@Css/style.css" />
                      </content>
                   </ScrollPane>
                </children>

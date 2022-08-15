@@ -21,7 +21,7 @@ public class Server {
         ServerSocket serverSocket;
         Socket socket;
         try {
-            serverSocket = new ServerSocket(5007);
+            serverSocket = new ServerSocket(5012);
             while (true) {
                 System.out.println("Waiting for clients...");
                 socket = serverSocket.accept();

@@ -4,23 +4,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * @author : Ishara Maduarnga
- * Project Name: Chat_Application
- * Date        : 7/30/2022
- * Time        : 12:11 AM
- * Year        : 2022
- */
+import java.io.IOException;
 
 public class Client03 extends Application {
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("View/Login_Signup.fxml"));
-        primaryStage.setTitle("Messenger!");
+        primaryStage.setTitle("Group-Messenger!");
         primaryStage.setScene(new Scene(root, 330, 560));
         primaryStage.setResizable(false);
         primaryStage.show();

@@ -12,9 +12,12 @@ import animatefx.animation.FadeIn;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -32,6 +35,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -92,7 +96,7 @@ public class Client_Room extends Thread implements Initializable {
 
     public void connectSocket() {
         try {
-            socket = new Socket("localhost", 5007);
+            socket = new Socket("localhost", 5012);
             System.out.println("Socket is connected with server!");
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
@@ -147,8 +151,8 @@ public class Client_Room extends Thread implements Initializable {
 
                     ImageView imageView = new ImageView(image);
 
-                    imageView.setFitHeight(75);
-                    imageView.setFitWidth(150);
+                    imageView.setFitHeight(50);
+                    imageView.setFitWidth(50);
 
 
                     HBox hBox = new HBox(10);
@@ -178,12 +182,12 @@ public class Client_Room extends Thread implements Initializable {
 
                 } else {
                     //For the Text
-                    /*text.setFill(Color.WHITE);*/
+                    text.setFill(Color.WHITE);
                     text.getStyleClass().add("message");
                     TextFlow tempFlow = new TextFlow();
 
                     if (!cmd.equalsIgnoreCase(Login_Signup.username + ":")) {
-                        Text txtName = new Text(cmd + " ");
+                        Text txtName = new Text(cmd );
                         txtName.getStyleClass().add("txtName");
                         tempFlow.getChildren().add(txtName);
                     }
@@ -194,18 +198,28 @@ public class Client_Room extends Thread implements Initializable {
                     TextFlow flow = new TextFlow(tempFlow);
 
                     HBox hBox = new HBox(12); //12
+                    hBox.setMinHeight(50);
+                    hBox.setMaxHeight(50);
+                    hBox.setPrefHeight(50);
+                    hBox.setFillHeight(false);
+
+
+
 
                     //=================================================
 
 
                     if (!cmd.equalsIgnoreCase(Login_Signup.username + ":")) {
-
+                        tempFlow.getStyleClass().add("tempFlowFlipped");
+                        flow.getStyleClass().add("textFlowFlipped");
                         vbox.setAlignment(Pos.TOP_LEFT);
                         hBox.setAlignment(Pos.CENTER_LEFT);
                         hBox.getChildren().add(flow);
 
                     } else {
-//                        text.setFill(Color.WHITE);
+                     text.setFill(Color.WHITE);
+                        tempFlow.getStyleClass().add("tempFlow");
+                       flow.getStyleClass().add("textFlow");
 
                         hBox.setAlignment(Pos.BOTTOM_RIGHT);
                         hBox.getChildren().add(flow);
@@ -336,5 +350,16 @@ public class Client_Room extends Thread implements Initializable {
         fileChooser.setTitle("Open Image");
         this.filePath = fileChooser.showOpenDialog(stage);
         writer.println(Login_Signup.username + " " + "img" + filePath.getPath());
+    }
+
+    public void addNewStage(MouseEvent mouseEvent) throws IOException {
+
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../View/Login_Signup.fxml"))));
+        stage.setTitle("Messenger!");
+        stage.setResizable(false);
+        stage.show();
+
     }
 }

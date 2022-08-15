@@ -45,14 +45,14 @@ public class ClientHandler extends Thread {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+         /*   e.printStackTrace();*/
         } finally {
             try {
                 reader.close();
                 writer.close();
                 socket.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                /*e.printStackTrace();*/
             }
         }
     }
