@@ -186,7 +186,7 @@ public class Client_Room extends Thread implements Initializable {
                     text.getStyleClass().add("message");
                     TextFlow tempFlow = new TextFlow();
 
-                    if (!cmd.equalsIgnoreCase(Login_Signup.username + ":")) {
+                    if (!cmd.equalsIgnoreCase(Login_Signup.username + ": ")) {
                         Text txtName = new Text(cmd );
                         txtName.getStyleClass().add("txtName");
                         tempFlow.getChildren().add(txtName);
@@ -209,7 +209,7 @@ public class Client_Room extends Thread implements Initializable {
                     //=================================================
 
 
-                    if (!cmd.equalsIgnoreCase(Login_Signup.username + ":")) {
+                    if (!cmd.equalsIgnoreCase(Login_Signup.username + ": ")) {
                         tempFlow.getStyleClass().add("tempFlowFlipped");
                         flow.getStyleClass().add("textFlowFlipped");
                         vbox.setAlignment(Pos.TOP_LEFT);
@@ -355,11 +355,11 @@ public class Client_Room extends Thread implements Initializable {
     public void addNewStage(MouseEvent mouseEvent) throws IOException {
 
 
-        Stage stage = new Stage();
+      /*  Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../View/Login_Signup.fxml"))));
         stage.setTitle("Messenger!");
         stage.setResizable(false);
         stage.show();
-
+*/
     }
 }

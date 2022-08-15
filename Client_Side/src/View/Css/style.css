@@ -108,7 +108,7 @@
 }
 
 .textFlowFlipped{
-    -fx-background-color: linear-gradient(to left, #0fc40f, #157700);
+    -fx-background-color: linear-gradient(to left, #075aad, #0523b9);
     -fx-background-insets: -5 -5 -5 -10;
     -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.08),2,1.0,-0.5,-0.5);
     -fx-shape: "m 46.030545,129.18592 h 48.380952 c 3.54546,0.23355 5.32763,-1.59167 5.14193,-4.67449
