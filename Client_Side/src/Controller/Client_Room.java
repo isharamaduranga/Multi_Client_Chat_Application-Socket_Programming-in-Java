@@ -16,7 +16,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -151,8 +150,8 @@ public class Client_Room extends Thread implements Initializable {
 
                     ImageView imageView = new ImageView(image);
 
-                    imageView.setFitHeight(50);
-                    imageView.setFitWidth(50);
+                    imageView.setFitHeight(100);
+                    imageView.setFitWidth(100);
 
 
                     HBox hBox = new HBox(10);
@@ -233,32 +232,7 @@ public class Client_Room extends Thread implements Initializable {
             e.printStackTrace();
         }
     }
- /*   public void run() {
-        try {
-            while (true) {
-                String msg = reader.readLine();
-                String[] tokens = msg.split(" ");
-                String cmd = tokens[0];
-                System.out.println(cmd);
-                StringBuilder fulmsg = new StringBuilder();
-                for (int i = 1; i < tokens.length; i++) {
-                    fulmsg.append(tokens[i]);
-                }
-                System.out.println(fulmsg);
-                if (cmd.equalsIgnoreCase(Login_Signup.username + ":")) {
-                    continue;
-                } else if (fulmsg.toString().equalsIgnoreCase("bye")) {
-                    break;
-                }
-                msgRoom.appendText(msg + "\n");
-            }
-            reader.close();
-            writer.close();
-            socket.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
+
 
     public void handleProfileBtn(ActionEvent event) {
         if (event.getSource().equals(profileBtn) && !toggleProfile) {
@@ -353,13 +327,12 @@ public class Client_Room extends Thread implements Initializable {
     }
 
     public void addNewStage(MouseEvent mouseEvent) throws IOException {
-
-
-       /* Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../View/Login_Signup.fxml"))));
-        stage.setTitle("Messenger!");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/Login_Signup.fxml"))));
+        stage.setTitle("Messenger"); stage.centerOnScreen();
         stage.setResizable(false);
-        stage.show();*/
+        stage.show();
+
 
     }
 }
